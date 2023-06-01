@@ -1,0 +1,10 @@
+{
+    "name": "ilm-chat-interface-deployer",
+    "version": "0.0.1",
+    "dependencies": {
+        "@sap/html5-app-deployer": "^5.0.0"
+    },
+    "scripts": {
+        "start": "node node_modules/@sap/html5-app-deployer/index.js"
+    }
+}

@@ -1,0 +1,68 @@
+ID: ilm-chat-interface
+_schema-version: 3.1.0
+version: 0.0.1
+parameters:
+  enable-parallel-deployments: true
+modules:
+  - name: ui5-ilm-chat-interface
+    path: frontend
+    type: html5
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+    requires:
+      - name: ilm-chat-interface-xsuaa
+    provides: []
+  - name: python-ilm-chat-interface
+    path: backend
+    type: python
+    build-parameters: {}
+    requires:
+      - name: ilm-chat-interface-xsuaa
+    provides:
+      - name: python-destination
+        properties:
+          url: ${default-url}
+  - name: approuter-ilm-chat-interface
+    type: javascript.nodejs
+    path: frontend/approuter
+    requires:
+      - name: ilm-chat-interface-ui-repo-runtime
+      - name: ilm-chat-interface-xsuaa
+      - name: python-destination
+        group: destinations
+        properties:
+          name: python-destination
+          url: ~{url}
+          forwardAuthToken: true
+  - name: deployer-ilm-chat-interface
+    type: com.sap.html5.application-content
+    path: frontend/deployer
+    requires:
+      - name: ilm-chat-interface-ui-repo-host
+    build-parameters:
+      requires:
+        - name: ui5-ilm-chat-interface
+          artifacts:
+            - dist
+          target-path: resources/
+resources:
+  - name: ilm-chat-interface-xsuaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: application
+      service: xsuaa
+      path: ./xs-security.json
+  - name: ilm-chat-interface-ui-repo-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: app-runtime
+      service: html5-apps-repo
+  - name: ilm-chat-interface-ui-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo

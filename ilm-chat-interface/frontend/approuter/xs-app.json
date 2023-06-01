@@ -1,0 +1,20 @@
+{
+    "welcomeFile": "/index.html",
+    "authenticationMethod": "route",
+    "sessionTimeout": 30,
+    "routes": [
+        {
+            "source": "^/pythonApi/(.*)$",
+            "target": "/$1",
+            "destination": "python-destination",
+            "authenticationType": "xsuaa"
+        },
+        {
+            "source": "^/(.*)$",
+            "target": "/comsapui5project/$1",
+            "service": "html5-apps-repo-rt",
+            "authenticationType": "xsuaa",
+            "cacheControl": "no-cache, no-store, must-revalidate"
+        }
+    ]
+}

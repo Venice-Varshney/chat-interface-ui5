@@ -1,0 +1,16 @@
+{
+    "authenticationMethod": "none",
+    "routes": [
+        {
+            "source": "^/api/(.*)$",
+            "target": "/$1",
+            "destination": "bot",
+            "authenticationType": "none"
+        },
+        {
+            "source": "^/(.*)$",
+            "localDir": "./webapp",
+            "authenticationType": "none"
+        }
+    ]
+}

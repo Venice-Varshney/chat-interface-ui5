@@ -1,0 +1,11 @@
+{
+    "xsappname": "ilm-chat-interface",
+    "tenant-mode": "dedicated",
+    "scopes": [
+        {
+            "name": "uaa.user",
+            "description": "uaa.user"
+        }
+    ],
+    "attributes": []
+}

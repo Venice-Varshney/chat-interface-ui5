@@ -1,0 +1,85 @@
+/* Enter your custom styles here */
+.customButton .sapMBtnTransparent {
+    border:none;
+ }
+ .breadcrumbDivider {
+    font-size: 25px;
+    margin-right: 10px;
+    color: #d9d9d9;
+}
+
+.responseCreateButtonMargin {
+    margin-top: 160px;
+    margin-bottom: 160px;
+}
+
+.messageStripAlignment {
+    position: fixed;
+    bottom: 0;
+    left:0;
+}
+
+.quickreplyButton {
+    margin: 5px;
+}
+
+.chatbotUsermsg {
+    border-radius: 10px 10px 10px 10px;
+    background: lightskyblue;
+    padding: 2px 0 0 0;
+    margin: 5px;
+    align-self: end
+}
+
+.chatbotBotmsg {
+    background: lightgrey;
+    border-radius: 10px 10px 10px 10px;
+    padding: 2px 0 0 0;
+    margin: 5 px;
+    align-self: start
+}
+.descriptionColor{
+    color:#80888f;
+}
+
+.noColumnBorder .sapUiTableTr>td {
+    border-right: 0 !important;
+}
+
+.sapUiFormCLSmallColumns .sapUiFormCLElement>.sapUiFormCLCellsS6{
+    width: auto;
+}
+.noBottomBorder {
+    border-bottom: 0
+}
+
+.alignBottomLeft {
+    position: fixed;
+    bottom: 4px;
+    left:5px;
+}
+
+[data-style-class=lightgrey] {
+    background-color: rgba(239, 239, 239, 0.932) !important;
+    border-radius: 5px 5px 5px 5px;
+    padding: 2px 2px 2px 2px;
+    margin-bottom: 5px;
+}
+
+.dropField {
+    background-color: rgba(239, 239, 239, 0.932) !important;
+    border-radius: 5px 5px 5px 5px;
+    padding: 2px 2px 2px 2px;
+    margin-bottom: 5px;
+}
+.sapFCard[data-Status="3"], .sapFCard[data-Status="0"]{
+    border: 0.0625rem solid red !important;
+    box-shadow: 0 0 0 0.0625rem rgb(255 0 0/ 17%), 0 0.125rem 0.5rem 0 rgb(255 0 0 / 17%) !important;
+}
+.sapFCardHeader{
+    padding:.5rem !important;
+}
+.sapFCard[data-Status="2"]{
+    border: 0.0625rem solid orange !important;
+    box-shadow: 0 0 0 0.0625rem rgb(240 149 0/ 20%), 0 0.125rem 0.5rem 0 rgb(240 149 0 / 20%) !important;
+}

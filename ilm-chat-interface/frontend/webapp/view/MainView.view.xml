@@ -1,0 +1,87 @@
+<mvc:View controllerName="com.sap.ui5project.controller.MainView"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page id="page" title="{i18n>title}">
+		<content>
+
+			<VBox class="sapUiLargeMarginBeginEnd">
+
+				<List id="dropResponseTypeList" items="{chat>/Response}" class="sapUiSmallMargin" width="600px">
+
+					<CustomListItem id="customDisplayItem" class="sapUiSmallMarginBottom noBottomBorder">
+						<VBox visible="{= !${chat>botReply}}">
+							<HBox direction="RowReverse" backgroundDesign="Solid">
+								<Avatar src="sap-icon://person-placeholder" displaySize="XS" backgroundColor="Accent6" class="sapUiSmallMargin" />
+								<HBox class="chatbotUsermsg" backgroundDesign="Solid" width="auto">
+									<Text id="sampleQuestionDraft" text="{chat>reply/content}" textAlign="End" class="sapUiSmallMargin" />
+								</HBox>
+							</HBox>
+						</VBox>
+
+						<HBox visible="{chat>botReply}">
+							<HBox direction="ColumnReverse">
+								<Avatar src="sap-icon://laptop" displaySize="XS" backgroundColor="Accent10" class="sapUiSmallMargin" />
+							</HBox>
+
+							<VBox visible="{chat>reply/text/visible}" class="chatbotBotmsg sapUiSmallMargin">
+								<FormattedText htmlText="{chat>reply/text/data/content}" class="sapUiSmallMargin" />
+							</VBox>
+
+							<VBox visible="{chat>reply/buttons/visible}" class="chatbotBotmsg sapUiSmallMargin">
+								<Text text="{chat>reply/buttons/data/content/title}" class="sapUiSmallMargin"/>
+								<List items="{ path: 'chat>reply/buttons/data/content/buttons', templateShareable: false }" class="sapUiSmallMarginBottom">
+									<CustomListItem class="chatbotBotmsg sapUiSmallMarginBeginEnd">
+										<Button text="{chat>title}" width="100%" press=".onButtonPress" app:buttonValue="{chat>value}" />
+									</CustomListItem>
+								</List>
+							</VBox>
+
+
+							<VBox visible="{chat>reply/quickReplies/visible}" class="chatbotBotmsg sapUiSmallMargin">
+								<Text text="{chat>reply/quickReplies/data/content/title}" class="sapUiSmallMargin"/>
+								<f:GridList items="{ path: 'chat>reply/quickReplies/data/content/buttons', templateShareable: false }" width="400px" class="sapUiSmallMargin">
+									<f:customLayout class="chatbotBotmsg">
+										<grid:GridBoxLayout boxMinWidth="60px" class="chatbotBotmsg"/>
+									</f:customLayout>
+									<f:GridListItem class="chatbotBotmsg">
+										<Button text="{chat>title}" width="100%" class="sapUiTinyMarginEnd" press=".onButtonPress" app:buttonValue="{chat>value}"/>
+									</f:GridListItem>
+								</f:GridList>
+							</VBox>
+
+							<VBox visible="{chat>reply/list/visible}" class="chatbotBotmsg sapUiSmallMargin">
+								<Text text="{chat>reply/list/data/content/title}" visible="{= RegExp('[a-zA-Z0-9]', 'i').test(${chat>title})}" class="sapUiSmallMargin"/>
+								<Text text="{chat>reply/list/data/content/subtitle}" visible="{= RegExp('[a-zA-Z0-9]', 'i').test(${chat>subtitle})}" class="sapUiSmallMargin"/>
+								<Image src="{chat>reply/list/data/content/imageUrl}" visible="{= RegExp('[a-zA-Z0-9]', 'i').test(${chat>imageUrl})}" width="80%" />
+								<List items="{ path: 'chat>reply/list/data/content/elements', templateShareable: false }">
+									<CustomListItem class="sapUiSmallMargin chatbotBotmsg">
+										<HBox>
+											<Avatar src="{chat>imageUrl}" displaySize="XS" displayShape="Square" backgroundColor="Accent7" class="sapUiTinyMarginEnd" visible="{= RegExp('[a-zA-Z0-9]', 'i').test(${chat>imageUrl})}"/>
+											<VBox class="sapUiTinyMarginEnd" width="300px">
+												<Text text="{chat>title}" />
+												<Text text="{chat>subtitle}" visible="{= RegExp('[a-zA-Z0-9]', 'i').test(${chat>subtitle})}"/>
+												<Text text="{chat>status}" visible="{= RegExp('[a-zA-Z0-9]', 'i').test(${chat>status})}"/>
+												<Text text="{chat>description}" visible="{= RegExp('[a-zA-Z0-9]', 'i').test(${chat>description})}"/>
+											</VBox>
+											<Button text="{chat>buttons/0/title}" visible="{path:'chat>buttons/0',formatter:'.formatter.buttonExists'}" width="100px" press=".onButtonPress" app:buttonValue="{chat>buttons/0/value}"/>
+										</HBox>
+									</CustomListItem>
+								</List>
+								<Button text="{i18n>ShowMore}" visible="{= RegExp('true', 'i').test(${chat>reply/list/data/regenerate})}"/>
+							</VBox>
+
+							<VBox visible="{chat>reply/picture/visible}" class="chatbotBotmsg sapUiSmallMargin">
+								<Image src="{chat>reply/picture/data/content}" width="80%" class="sapUiSmallMargin" />
+							</VBox>
+						</HBox>
+					</CustomListItem>
+				</List>
+
+				<Input placeholder="Ask the bot eg. help" submit=".onUserInput" class="sapUiSmallMargin" width="600px" />
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

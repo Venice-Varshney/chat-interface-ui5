@@ -1,0 +1,10 @@
+{
+    "destinations": [
+    {
+        "forwardAuthToken": false,
+        "name": "bot",
+        "strictSSL": false,
+        "url": "https://framework-demo2.cfapps.sap.hana.ondemand.com/bot"
+    }
+]
+}
